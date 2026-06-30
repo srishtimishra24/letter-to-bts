@@ -470,17 +470,19 @@ function createPetal(){
 
 const petal=document.createElement("div");
 
-petal.innerHTML="❀";
+const flowers = ["🌸","🌺","❀","✿","💜"];
+
+petal.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
 
 petal.style.position="fixed";
 petal.style.left=Math.random()*100+"vw";
 petal.style.top="-50px";
 
-petal.style.fontSize=(12+Math.random()*12)+"px";
+petal.style.fontSize=(20+Math.random()*18)+"px";
 
 petal.style.color=colors[Math.floor(Math.random()*colors.length)];
 
-petal.style.opacity=.45;
+petal.style.opacity=.8;
 
 petal.style.pointerEvents="none";
 
@@ -494,8 +496,20 @@ setTimeout(()=>{
 
 petal.style.top="110vh";
 
-petal.style.transform=`translateX(${(Math.random()*200)-100}px) rotate(${Math.random()*720}deg)`;
-
+petal.animate(
+[
+{
+transform:"translate(0px,0px) rotate(0deg)"
+},
+{
+transform:`translate(${Math.random()*250-125}px,110vh)
+rotate(${720+Math.random()*720}deg)`
+}
+],
+{
+duration:10000+Math.random()*5000,
+easing:"ease-in-out"
+});
 petal.style.opacity="0";
 
 },50);
@@ -506,14 +520,13 @@ petal.remove();
 
 }
 
-for(let i=0;i<12;i++){
+for(let i=0;i<25;i++){
 
 setTimeout(createPetal,i*400);
 
 }
 
-setInterval(createPetal,2500);
-
+setInterval(createPetal,900);
 </script>
 
 </body>
